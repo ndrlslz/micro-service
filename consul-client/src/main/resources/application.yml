@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+  application:
+    name: consul-client
+
+---
+spring:
+  profiles: docker
+  cloud:
+    consul:
+      host: consul-server-container
+      port: 8500

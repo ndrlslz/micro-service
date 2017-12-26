@@ -17,3 +17,7 @@ include 'services:webservice'
 */
 
 rootProject.name = 'microservice'
+include 'eureka-server'
+include 'eureka-client'
+include 'consul-client'
+include 'service-order'
