@@ -1,5 +1,5 @@
-image_name=eureka-server
-container_name=eureka-server-container
+image_name=consul-client
+container_name=consul-client-container
 
 active_container_id=$(docker ps -q --filter="ancestor=${image_name}")
 all_container_id=$(docker ps -aq --filter="ancestor=${image_name}")
@@ -40,7 +40,7 @@ build_image() {
 
 run_container() {
     echo "docker run ${container_name}"
-    docker run -d -it -p 8761:8761 --network=microservice --name ${container_name} ${image_name}
+    docker run -d -it --network=microservice --name ${container_name} ${image_name}
 }
 
 restart() {
@@ -82,4 +82,3 @@ case "$1" in
     *)
         echo "Usage: ./service.sh build|start|stop|restart|rm|rmi"
 esac
-
