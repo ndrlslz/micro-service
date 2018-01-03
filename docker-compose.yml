@@ -1,0 +1,16 @@
+version: '2'
+services:
+    eureka-server:
+        image: eureka-server
+        container_name: eureka-server-container
+        ports:
+            - "8761:8761"
+    eureka-client:
+        image: eureka-client
+        container_name: eureka-client-container
+        depends_on:
+            - "eureka-server"
+        ports:
+            - "8762:8762"
+        command: ["/apps/wait-for-it.sh", "eureka-server:8761", "--", "/bin/sh", "./run.sh" ]
+ 
