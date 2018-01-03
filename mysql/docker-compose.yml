@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    service_order_db:
+        image: mysql
+        container_name: service-order-db-container
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: passw0rd
+            MYSQL_DATABASE: order
+        volumes:
+            - ~/IdeaProjects/data/service/order:/var/lib/mysql
+networks:
+    default:
+        external:
+            name: microservice
