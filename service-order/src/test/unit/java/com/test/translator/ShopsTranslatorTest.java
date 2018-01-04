@@ -4,13 +4,13 @@ import com.test.model.Shop;
 import com.test.model.Shops;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resource;
 
 import java.util.Arrays;
-import java.util.List;
 
+import static com.test.util.ShopBuilder.shopPagedResources;
+import static com.test.util.ShopBuilder.shopResource;
 import static org.junit.Assert.assertEquals;
 
 public class ShopsTranslatorTest {
@@ -23,16 +23,9 @@ public class ShopsTranslatorTest {
 
     @Test
     public void should_return_shops() throws Exception {
-        List<Resource<Shop>> shopCollection = Arrays.asList(
-                new Resource<>(new Shop("code1", "name1"), new Link("test")),
-                new Resource<>(new Shop("code2", "name2"), new Link("test"))
+        PagedResources<Resource<Shop>> resources = shopPagedResources(
+                Arrays.asList(shopResource("code1", "name1"), shopResource("code2", "name2"))
         );
-        PagedResources<Resource<Shop>> resources = new PagedResources<>(
-                shopCollection,
-                new PagedResources.PageMetadata(10, 0, 0, 1),
-                new Link("test")
-        );
-
         Shops shops = shopsTranslator.translate(resources);
 
         assertEquals(2, shops.getShops().size());
