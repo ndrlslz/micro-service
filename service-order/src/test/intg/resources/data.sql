@@ -1,0 +1,2 @@
+INSERT INTO SHOP (ID, CODE, NAME) VALUES (1, 'code1', 'name1')
+INSERT INTO SHOP (ID, CODE, NAME) VALUES (2, 'code2', 'name2')
