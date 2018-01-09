@@ -13,4 +13,15 @@ services:
         ports:
             - "8762:8762"
         command: ["/apps/wait-for-it.sh", "eureka-server:8761", "--", "/bin/sh", "./run.sh" ]
- 
+    service-order:
+        image: service-order
+        container_name: service-order-container
+        depends_on:
+            - "eureka-server"
+        ports:
+            - "8763:8763"
+        command: ["/apps/wait-for-it.sh", "eureka-server:8761", "--", "/bin/sh", "./run.sh" ]
+networks:
+    default:
+        external:
+            name: microservice

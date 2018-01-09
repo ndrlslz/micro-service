@@ -29,7 +29,6 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    //What if shop is not exists? should I return shop id not found or just return empty orders.
     @GetMapping("shops/{id}/orders")
     public Orders retrieveOrders(@NotNull @PathVariable @ApiParam(value = "id", required = true) String id,
                                  @PageableDefault Pageable pageable,

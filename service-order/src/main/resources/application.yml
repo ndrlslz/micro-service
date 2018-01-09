@@ -23,7 +23,11 @@ logging:
 ---
 spring:
   profiles: docker
-
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://service-order-db-container:3306/order?useSSL=false
+    username: root
+    password: passw0rd
 eureka:
   client:
     serviceUrl:

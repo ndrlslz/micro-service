@@ -5,7 +5,7 @@ import org.junit.Test;
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class OrderControllerTest extends ControllerTestBase{
+public class OrderControllerTest extends ControllerTestBase {
     @Test
     public void should_return_orders_of_specific_shop() {
         when()
