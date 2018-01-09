@@ -33,7 +33,7 @@ public class ShopControllerTestWithSpring {
     public void name() throws Exception {
         when(shopService.retrieveAllShops(isA(Pageable.class), any())).thenReturn(shops("code1", "name1", "code2", "name2"));
 
-        mvc.perform(get("/v1/shops"))
+        mvc.perform(get("/shops"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.[0].code").value("code1"));
     }

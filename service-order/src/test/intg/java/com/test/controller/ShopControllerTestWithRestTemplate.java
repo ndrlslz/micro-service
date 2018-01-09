@@ -18,7 +18,7 @@ public class ShopControllerTestWithRestTemplate {
 
     @Test
     public void test_with_rest_template() throws Exception {
-        Shops shops = restTemplate.getForObject("/v1/shops", Shops.class);
+        Shops shops = restTemplate.getForObject("/shops", Shops.class);
 
         assertEquals(2, shops.getShops().size());
         assertEquals("code1", shops.getShops().get(0).getCode());

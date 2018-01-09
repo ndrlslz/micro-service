@@ -24,6 +24,7 @@ public class SwaggerConfiguration {
                 .paths(PathSelectors.any())
                 .build();
     }
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Service Order")

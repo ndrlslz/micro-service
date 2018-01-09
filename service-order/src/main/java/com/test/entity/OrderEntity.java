@@ -3,9 +3,10 @@ package com.test.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order")
+@Table(name = "vehicle_order")
 public class OrderEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String vehicle;
     private String price;

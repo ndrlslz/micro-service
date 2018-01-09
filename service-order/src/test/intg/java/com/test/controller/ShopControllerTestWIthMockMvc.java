@@ -21,7 +21,7 @@ public class ShopControllerTestWIthMockMvc {
 
     @Test
     public void name() throws Exception {
-        mockMvc.perform(get("/v1/shops"))
+        mockMvc.perform(get("/shops"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.[0].code").value("code1"));
     }

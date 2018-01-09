@@ -1,21 +1,29 @@
 package com.test.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.PagedResources;
 
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Shops {
     @JsonProperty("data")
+    @ApiModelProperty(value = "Shops Information", required = true, position = 1)
     private List<Shop> shops;
 
     @JsonProperty("links")
+    @ApiModelProperty(position = 2)
     private List<Link> links;
 
+
     @JsonProperty("meta")
-    private
-    PagedResources.PageMetadata metadata;
+    @ApiModelProperty(position = 3)
+    private PagedResources.PageMetadata metadata;
 
     public List<Shop> getShops() {
         return shops;

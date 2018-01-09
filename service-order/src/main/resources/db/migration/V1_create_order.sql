@@ -20,7 +20,7 @@ CREATE TABLE vehicle_order (
   vehicle        VARCHAR(50),
   price          INT,
   shop_id        VARCHAR(64),
-  shop_code        VARCHAR(64),
+  shop_code      VARCHAR(64),
   CREATED_AT     DATETIME,
   CONSTRAINT pk_order PRIMARY KEY (ID)
 );

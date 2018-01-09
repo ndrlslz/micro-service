@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
-@RequestMapping(value = "/v1")
-@Api(value = "Shop controller")
+@Api(value = "Shop", description = "Access to shop resources")
+@RequestMapping(produces = APPLICATION_JSON_VALUE)
 public class ShopController {
     private ShopService shopService;
 
@@ -26,7 +28,8 @@ public class ShopController {
 
     @ApiOperation(value = "retrieve all shops", response = Shops.class)
     @GetMapping("/shops")
-    public Shops listAllShops(@PageableDefault Pageable pageable, PagedResourcesAssembler<ShopEntity> assembler) {
+    public Shops listAllShops(@PageableDefault Pageable pageable,
+                              PagedResourcesAssembler<ShopEntity> assembler) {
         return shopService.retrieveAllShops(pageable, assembler);
     }
 }
