@@ -1,15 +1,18 @@
 package com.test.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
 @Table(name = "vehicle_order")
 public class OrderEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private String id = UUID.randomUUID().toString();
+    @Column(length = 64)
     private String vehicle;
-    private String price;
+
+    private BigDecimal price;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shop_id")
@@ -31,11 +34,11 @@ public class OrderEntity {
         this.vehicle = vehicle;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

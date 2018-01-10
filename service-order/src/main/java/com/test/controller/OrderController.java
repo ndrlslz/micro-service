@@ -1,6 +1,8 @@
 package com.test.controller;
 
 import com.test.entity.OrderEntity;
+import com.test.model.CreateOrderRequest;
+import com.test.model.Order;
 import com.test.model.Orders;
 import com.test.service.DefaultOrderService;
 import io.swagger.annotations.Api;
@@ -9,13 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 
+import static com.test.validation.OrderValidation.validateCreateOrderRequest;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -35,4 +35,13 @@ public class OrderController {
                                  PagedResourcesAssembler<OrderEntity> assembler) {
         return orderService.retrieveAllOrdersByShopId(id, pageable, assembler);
     }
+
+    @PostMapping("shops/{id}/order")
+    public Order createOrder(@NotNull @PathVariable(value = "id") @ApiParam(value = "shop_id", required = true) String shopId,
+                             @RequestBody CreateOrderRequest request) {
+        validateCreateOrderRequest(request);
+
+        return orderService.createOrder(shopId, request);
+    }
+
 }

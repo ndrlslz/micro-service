@@ -13,6 +13,7 @@ public class OrderAssembler implements ResourceAssembler<OrderEntity, Resource<O
         Order order = new Order();
         order.setPrice(entity.getPrice());
         order.setVehicle(entity.getVehicle());
+        order.setShopName(entity.getShop().getName());
         return new Resource<>(order);
     }
 }

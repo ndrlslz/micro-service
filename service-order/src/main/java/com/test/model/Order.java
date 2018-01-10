@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
+
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
 @JsonInclude(NON_NULL)
@@ -12,7 +14,9 @@ public class Order {
     @ApiModelProperty(value = "Vehicle order", position = 1)
     private String vehicle;
     @ApiModelProperty(position = 2)
-    private String price;
+    private BigDecimal price;
+    private String shopName;
+    private String shopId;
 
     public String getVehicle() {
         return vehicle;
@@ -22,11 +26,27 @@ public class Order {
         this.vehicle = vehicle;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public String getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
     }
 }

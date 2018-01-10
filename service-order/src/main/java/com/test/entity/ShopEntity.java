@@ -1,22 +1,24 @@
 package com.test.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "shop")
 public class ShopEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private String id = UUID.randomUUID().toString();
     private String code;
     private String name;
 
     @OneToMany(mappedBy = "shop")
     private Set<OrderEntity> orders;
 
+    public void addOrder(OrderEntity orderEntity) {
+        this.getOrders().add(orderEntity);
+        orderEntity.setShop(this);
+    }
     public String getId() {
         return id;
     }
