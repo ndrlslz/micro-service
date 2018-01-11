@@ -20,7 +20,6 @@ public class Shops {
     @ApiModelProperty(position = 2)
     private List<Link> links;
 
-
     @JsonProperty("meta")
     @ApiModelProperty(position = 3)
     private PagedResources.PageMetadata metadata;
@@ -47,6 +46,21 @@ public class Shops {
 
     public void setMetadata(PagedResources.PageMetadata metadata) {
         this.metadata = metadata;
+    }
+
+    public Shops withShops(List<Shop> shops) {
+        setShops(shops);
+        return this;
+    }
+
+    public Shops withLinks(List<Link> links) {
+        setLinks(links);
+        return this;
+    }
+
+    public Shops withMetadata(PagedResources.PageMetadata pageMetadata) {
+        setMetadata(metadata);
+        return this;
     }
 
     @Override

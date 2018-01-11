@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 public class OrderAssembler implements ResourceAssembler<OrderEntity, Resource<Order>> {
     @Override
     public Resource<Order> toResource(OrderEntity entity) {
-        Order order = new Order();
-        order.setPrice(entity.getPrice());
-        order.setVehicle(entity.getVehicle());
-        order.setShopName(entity.getShop().getName());
-        return new Resource<>(order);
+        return new Resource<>(
+                new Order()
+                        .withPrice(entity.getPrice())
+                        .withVehicle(entity.getVehicle())
+                        .withShopName(entity.getShop().getName()));
     }
 }

@@ -12,20 +12,27 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.reducing;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class OrderTranslator {
-    public Orders translate(PagedResources<Resource<Order>> pagedResources) {
-        Orders orders = new Orders();
-        orders.setLinks(pagedResources.getLinks());
-        orders.setMetadata(pagedResources.getMetadata());
-        List<Order> orderList = new ArrayList<>();
-        pagedResources.forEach(resource -> orderList.add(resource.getContent()));
-        orders.setOrders(orderList);
-        return orders;
+    public Orders translatePagedResources(PagedResources<Resource<Order>> pagedResources) {
+        return new Orders()
+                .withLinks(pagedResources.getLinks())
+                .withMetadata(pagedResources.getMetadata())
+                .withOrders(
+                        pagedResources
+                                .getContent()
+                                .stream()
+                                .map(Resource::getContent)
+                                .collect(toList()));
     }
 
-    public OrderEntity translate(Order order) {
+    public OrderEntity translateOrder(Order order) {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setVehicle(order.getVehicle());
         orderEntity.setPrice(order.getPrice());
@@ -36,18 +43,18 @@ public class OrderTranslator {
         return orderEntity;
     }
 
-    public OrderEntity translate(CreateOrderRequest request) {
+    public OrderEntity translateRequest(CreateOrderRequest request) {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setPrice(request.getPrice());
         orderEntity.setVehicle(request.getVehicle());
         return orderEntity;
     }
-    public Order translate(OrderEntity orderEntity) {
-        Order order = new Order();
-        order.setPrice(orderEntity.getPrice());
-        order.setVehicle(orderEntity.getVehicle());
-        order.setShopName(orderEntity.getShop().getName());
-        order.setShopId(orderEntity.getShop().getId());
-        return order;
+
+    public Order translateOrderEntity(OrderEntity orderEntity) {
+        return new Order()
+                .withPrice(orderEntity.getPrice())
+                .withVehicle(orderEntity.getVehicle())
+                .withShopName(orderEntity.getShop().getName())
+                .withShopId(orderEntity.getShop().getId());
     }
 }

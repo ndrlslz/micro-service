@@ -1,34 +1,18 @@
 package com.test.exception;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class ApiErrors {
     private List<ApiError> errors;
 
-    private ApiErrors(ApiErrorsBuilder builder) {
-        this.errors = builder.errors;
+    public ApiErrors(List<ApiError> errors) {
+        this.errors = errors;
     }
 
-    public static class ApiErrorsBuilder {
-        private List<ApiError> errors;
-
-        ApiErrorsBuilder() {
-            errors = new ArrayList<>();
-        }
-
-        public ApiErrorsBuilder withError(String message, int code) {
-            errors.add(new ApiError(message, code));
-            return this;
-        }
-
-        public ApiErrors build() {
-            return new ApiErrors(this);
-        }
-    }
-
-    static ApiErrorsBuilder newInstance() {
-        return new ApiErrorsBuilder();
+    public ApiErrors(ApiError... errors) {
+        this.errors = asList(errors);
     }
 
     public List<ApiError> getErrors() {

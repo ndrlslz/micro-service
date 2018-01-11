@@ -25,6 +25,16 @@ public class Shop {
         this.name = name;
     }
 
+    public Shop withCode(String code) {
+        setCode(code);
+        return this;
+    }
+
+    public Shop withName(String name) {
+        setName(name);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

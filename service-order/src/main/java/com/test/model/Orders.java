@@ -48,6 +48,21 @@ public class Orders {
         this.metadata = metadata;
     }
 
+    public Orders withOrders(List<Order> orders) {
+        setOrders(orders);
+        return this;
+    }
+
+    public Orders withLinks(List<Link> links) {
+        setLinks(links);
+        return this;
+    }
+
+    public Orders withMetadata(PagedResources.PageMetadata pageMetadata) {
+        setMetadata(metadata);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

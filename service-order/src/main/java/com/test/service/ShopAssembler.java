@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 public class ShopAssembler implements ResourceAssembler<ShopEntity, Resource<Shop>> {
     @Override
     public Resource<Shop> toResource(ShopEntity entity) {
-        Shop shop = new Shop();
-        shop.setCode(entity.getCode());
-        shop.setName(entity.getName());
-        return new Resource<>(shop);
+        return new Resource<>(
+                new Shop()
+                    .withCode(entity.getCode())
+                    .withName(entity.getName()));
     }
 }

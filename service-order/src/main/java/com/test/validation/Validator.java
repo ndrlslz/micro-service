@@ -3,6 +3,7 @@ package com.test.validation;
 import com.test.exception.MissingParameterException;
 
 import java.math.BigDecimal;
+import java.util.function.Consumer;
 
 import static java.lang.String.format;
 
@@ -18,5 +19,4 @@ public class Validator {
             throw new MissingParameterException(format("%s cannot be null or empty", variable));
         }
     }
-
 }

@@ -13,8 +13,10 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 public class Order {
     @ApiModelProperty(value = "Vehicle order", position = 1)
     private String vehicle;
+
     @ApiModelProperty(position = 2)
     private BigDecimal price;
+
     private String shopName;
     private String shopId;
 
@@ -48,5 +50,25 @@ public class Order {
 
     public void setShopId(String shopId) {
         this.shopId = shopId;
+    }
+
+    public Order withVehicle(String vehicle) {
+        setVehicle(vehicle);
+        return this;
+    }
+
+    public Order withPrice(BigDecimal price) {
+        setPrice(price);
+        return this;
+    }
+
+    public Order withShopName(String shopName) {
+        setShopName(shopName);
+        return this;
+    }
+
+    public Order withShopId(String shopId) {
+        setShopId(shopId);
+        return this;
     }
 }
