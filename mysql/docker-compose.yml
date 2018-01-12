@@ -11,6 +11,16 @@ services:
             MYSQL_DATABASE: order
         volumes:
             - ~/IdeaProjects/data/service/order:/var/lib/mysql
+    service_vehicle_db:
+        image: mysql
+        container_name: service-vehicle-db-container
+        ports:
+            - "13306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: passw0rd
+            MYSQL_DATABASE: vehicle
+        volumes:
+            - ~/IdeaProjects/data/service/vehicle:/var/lib/mysql
 networks:
     default:
         external:
