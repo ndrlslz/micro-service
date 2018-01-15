@@ -39,7 +39,8 @@ public class OrderController {
     public Orders retrieveOrders(@NotNull @PathVariable @ApiParam(value = "id", required = true) String id,
                                  @PageableDefault Pageable pageable,
                                  PagedResourcesAssembler<OrderEntity> assembler) {
-        return orderService.retrieveAllOrdersByShopId(id, pageable, assembler);
+        throw new ResourceNotFoundException("Shop not found");
+//        return orderService.retrieveAllOrdersByShopId(id, pageable, assembler);
     }
 
     @PostMapping("shops/{id}/order")
