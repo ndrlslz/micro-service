@@ -25,9 +25,9 @@ public class VehicleDao {
         baseUrl = format("%s:%s", restEndpointProperties.getUrl(), restEndpointProperties.getPort());
     }
 
-    public Vehicles test() throws DaoException {
+    public Vehicles retrieveVehiclesForShop(String shopId) throws DaoException {
         try {
-            return restTemplate.getForObject(baseUrl + "/vehicles?shopId=1", Vehicles.class);
+            return restTemplate.getForObject(baseUrl + "/vehicles?shopId=" + shopId , Vehicles.class);
         } catch (Exception exception) {
             throw newException(baseUrl).build(exception);
         }

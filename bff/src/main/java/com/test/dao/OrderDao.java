@@ -25,9 +25,9 @@ public class OrderDao {
         baseUrl = format("%s:%s", restEndpointProperties.getUrl(), restEndpointProperties.getPort());
     }
 
-    public Orders test() throws DaoException {
+    public Orders retrieveOrdersForShop(String shopId) throws DaoException {
         try {
-            return restTemplate.getForObject(baseUrl + "/shops/1/orders", Orders.class);
+            return restTemplate.getForObject(baseUrl + "/shops/" + shopId + "/orders", Orders.class);
         } catch (Exception exception) {
             throw newException(baseUrl).build(exception);
         }

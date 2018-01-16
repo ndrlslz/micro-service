@@ -1,18 +1,24 @@
 package com.test.controller;
 
-import com.test.dao.OrderDao;
-import com.test.dao.VehicleDao;
-import com.test.model.Orders;
+import com.test.exception.ApiErrors;
 import com.test.model.Shop;
-import com.test.model.Vehicles;
 import com.test.service.ShopService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
+
+import static javax.servlet.http.HttpServletResponse.*;
+
 @RestController
+@Api(value = "Bff", description = "Bff service")
 public class ShopController {
     private ShopService shopService;
 
@@ -21,8 +27,14 @@ public class ShopController {
         this.shopService = shopService;
     }
 
-    @GetMapping("/test")
-    public Shop test() throws Exception {
-        return shopService.retrieveShop();
+    @GetMapping("/shops/{shop_id}")
+    @ApiOperation("retrieve all orders and vehicles for specific shop")
+    @ApiResponses({
+            @ApiResponse(code = SC_BAD_REQUEST, response = ApiErrors.class, message = "Invalid query parameter"),
+            @ApiResponse(code = SC_BAD_GATEWAY, response = ApiErrors.class, message = "Error return from order or vehicles service"),
+            @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
+    })
+    public Shop test(@NotNull @PathVariable("shop_id") String shopId) throws Exception {
+        return shopService.retrieveShop(shopId);
     }
 }

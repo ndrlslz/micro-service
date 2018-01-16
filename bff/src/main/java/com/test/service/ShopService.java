@@ -21,10 +21,10 @@ public class ShopService {
         this.orderDao = orderDao;
     }
 
-    public Shop retrieveShop() {
+    public Shop retrieveShop(String shopId) {
         try {
-            Vehicles vehicles = vehicleDao.test();
-            Orders orders = orderDao.test();
+            Vehicles vehicles = vehicleDao.retrieveVehiclesForShop(shopId);
+            Orders orders = orderDao.retrieveOrdersForShop(shopId);
             Shop shop = new Shop();
             shop.setOrders(orders.getOrders());
             shop.setVehicles(vehicles.getVehicles());
