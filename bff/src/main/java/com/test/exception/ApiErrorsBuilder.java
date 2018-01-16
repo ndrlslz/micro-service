@@ -34,6 +34,11 @@ public class ApiErrorsBuilder {
         return this;
     }
 
+    public ApiErrorsBuilder addServiceUnavailable(String... message) {
+        addError(SC_SERVICE_UNAVAILABLE, message);
+        return this;
+    }
+
     public ApiErrorsBuilder addError(int code, String... message) {
         List<ApiError> notFounds = Arrays
                 .stream(message)

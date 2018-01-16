@@ -24,8 +24,7 @@ public class RestTemplateConfiguration {
 
     @Bean
     public RestTemplate orderRestTemplate() {
-        RestTemplate restTemplate = new RestTemplate(factory());
-        return restTemplate;
+        return new RestTemplate(factory());
     }
 
     public ClientHttpRequestFactory factory() {
