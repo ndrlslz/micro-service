@@ -3,10 +3,7 @@ package com.test.controller;
 import com.test.exception.ApiErrors;
 import com.test.model.Shop;
 import com.test.service.ShopService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +31,7 @@ public class ShopController {
             @ApiResponse(code = SC_BAD_GATEWAY, response = ApiErrors.class, message = "Error return from order or vehicles service"),
             @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
     })
-    public Shop test(@NotNull @PathVariable("shop_id") String shopId) throws Exception {
+    public Shop retrieveShop(@ApiParam(value = "Shop Id") @NotNull @PathVariable("shop_id") String shopId) throws Exception {
         return shopService.retrieveShop(shopId);
     }
 }

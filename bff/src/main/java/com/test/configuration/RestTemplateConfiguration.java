@@ -1,5 +1,7 @@
 package com.test.configuration;
 
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,8 +30,16 @@ public class RestTemplateConfiguration {
     }
 
     public ClientHttpRequestFactory factory() {
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setConnectTimeout(5000);
-        return factory;
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(2000)
+                .setSocketTimeout(5000)
+                .build();
+
+        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create()
+                .setMaxConnTotal(20)
+                .setMaxConnPerRoute(20)
+                .setDefaultRequestConfig(requestConfig);
+
+        return new HttpComponentsClientHttpRequestFactory(httpClientBuilder.build());
     }
 }

@@ -44,7 +44,7 @@ public class OrderController {
     })
     public Orders retrieveOrders(@NotNull @PathVariable @ApiParam(value = "id", required = true) String id,
                                  @PageableDefault Pageable pageable,
-                                 PagedResourcesAssembler<OrderEntity> assembler) {
+                                 PagedResourcesAssembler<OrderEntity> assembler) throws InterruptedException {
         return orderService.retrieveAllOrdersByShopId(id, pageable, assembler);
     }
 
