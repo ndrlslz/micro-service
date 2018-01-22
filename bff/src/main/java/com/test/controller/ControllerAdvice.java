@@ -23,6 +23,7 @@ public class ControllerAdvice {
                     .addNotFound("Required resource not found")
                     .build();
         }
+        System.out.println(e.getDaoException().getCause());
         return newErrors()
                 .addInternalError("Internal server error")
                 .build();

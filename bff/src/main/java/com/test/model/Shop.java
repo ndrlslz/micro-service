@@ -44,4 +44,14 @@ public class Shop {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    public Shop withOrders(List<Order> orders) {
+        setOrders(orders);
+        return this;
+    }
+
+    public Shop withVehicles(List<Vehicle> vehicles) {
+        setVehicles(vehicles);
+        return this;
+    }
 }

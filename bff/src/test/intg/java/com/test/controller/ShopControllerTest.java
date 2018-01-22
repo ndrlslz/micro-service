@@ -1,7 +1,7 @@
 package com.test.controller;
 
-import com.test.dao.OrderDao;
-import com.test.dao.VehicleDao;
+import com.test.dao.OrderDaoV1;
+import com.test.dao.VehicleDaoV1;
 import com.test.model.Order;
 import com.test.model.Orders;
 import com.test.model.Vehicle;
@@ -29,10 +29,10 @@ public class ShopControllerTest {
     private int port;
 
     @MockBean
-    private OrderDao orderDao;
+    private OrderDaoV1 orderDaoV1;
 
     @MockBean
-    private VehicleDao vehicleDao;
+    private VehicleDaoV1 vehicleDaoV1;
 
     @Autowired
     private ApplicationContext context;
@@ -58,11 +58,11 @@ public class ShopControllerTest {
         vehicles.setVehicles(vehicleList);
 
 
-        Mockito.when(orderDao.retrieveOrdersForShop("1")).thenReturn(orders);
-        Mockito.when(vehicleDao.retrieveVehiclesForShop("1")).thenReturn(vehicles);
+        Mockito.when(orderDaoV1.retrieveOrdersForShop("1")).thenReturn(orders);
+        Mockito.when(vehicleDaoV1.retrieveVehiclesForShop("1")).thenReturn(vehicles);
 
         when()
-                .get("http://localhost:" + port + "/shops/1")
+                .get("http://localhost:" + port + "/v1/shops/1")
                 .then()
                 .statusCode(200)
                 .body("orders[0].price", equalTo("100"))

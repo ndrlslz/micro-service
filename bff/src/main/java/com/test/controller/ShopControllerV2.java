@@ -3,6 +3,7 @@ package com.test.controller;
 import com.test.exception.ApiErrors;
 import com.test.model.Shop;
 import com.test.service.ShopServiceV1;
+import com.test.service.v2.ShopServiceV2;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,17 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
 
-import static javax.servlet.http.HttpServletResponse.*;
+import static javax.servlet.http.HttpServletResponse.SC_BAD_GATEWAY;
+import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
+import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 
 @RestController
 @Api(value = "Bff", description = "Bff service")
-@RequestMapping("/v1")
-public class ShopController {
-    private ShopServiceV1 shopServiceV1;
+@RequestMapping("/v2")
+public class ShopControllerV2 {
+    private ShopServiceV2 shopServiceV2;
 
     @Autowired
-    public ShopController(ShopServiceV1 shopServiceV1) {
-        this.shopServiceV1 = shopServiceV1;
+    public ShopControllerV2(ShopServiceV2 shopServiceV2) {
+        this.shopServiceV2 = shopServiceV2;
     }
 
     @GetMapping("/shops/{shop_id}")
@@ -33,6 +36,7 @@ public class ShopController {
             @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
     })
     public Shop retrieveShop(@ApiParam(value = "Shop Id") @NotNull @PathVariable("shop_id") String shopId) throws Exception {
-        return shopServiceV1.retrieveShop(shopId);
+        return shopServiceV2.retrieveShop(shopId);
     }
+
 }
