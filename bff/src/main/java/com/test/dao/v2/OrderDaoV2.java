@@ -26,7 +26,7 @@ public class OrderDaoV2 implements OrderDao{
         this.restTemplate = restTemplate;
     }
 
-    @HystrixCommand(commandKey = "retrieve orders for shop v2")
+    @HystrixCommand(commandKey = "retrieve orders for shop v2", fallbackMethod = "emptyOrders")
     public Orders retrieveOrdersForShop(String shopId) throws DaoException {
         try {
             String url = UrlBuilder.newUrlBuilder(BASE_URL).buildRetrieveOrdersUrl(shopId);
