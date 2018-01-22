@@ -1,4 +1,4 @@
-projects=( "eureka-server" "eureka-client" "service-order" "service-vehicle" )
+projects=( "eureka-server" "eureka-client" "service-order" "service-vehicle" "bff" )
 
 microservice_dir=$(dirname $0)
 command=$1

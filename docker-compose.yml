@@ -29,6 +29,14 @@ services:
         ports:
             - "8764:8764"
         command: ["/apps/wait-for-it.sh", "eureka-server:8761", "--", "/bin/sh", "./run.sh" ]
+    bff:
+        image: bff
+        container_name: bff-container
+        depends_on:
+            - "eureka-server"
+        ports:
+            - "8765:8765"
+        command: ["/apps/wait-for-it.sh", "eureka-server:8761", "--", "/bin/sh", "./run.sh" ]
 networks:
     default:
         external:

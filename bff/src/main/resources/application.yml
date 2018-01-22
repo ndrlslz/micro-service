@@ -52,3 +52,12 @@ eureka:
     serviceUrl:
       defaultZone: http://eureka-server-container:8761/eureka
 
+service:
+  order:
+    url: "http://service-order-container"
+    port: 8763
+    timeout: 2000
+  vehicle:
+    url: "http://service-vehicle-container"
+    port: 8764
+    timeout: 2000
