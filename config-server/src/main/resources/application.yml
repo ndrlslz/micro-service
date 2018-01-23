@@ -5,6 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/ndrlslz/micro-service/config-server/config
+          uri: https://github.com/ndrlslz/micro-service.git
+          search-paths: '/config-data/{application}/{profile}'
 server:
   port: 1201
