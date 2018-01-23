@@ -1,0 +1,20 @@
+server:
+  port: 8764
+
+spring:
+  application:
+    name: service-vehicle
+
+logging:
+  file: /apps/boot/application.log
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://service-vehicle-db-container:3306/vehicle?useSSL=false
+    username: root
+    password: passw0rd
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server-container:8761/eureka

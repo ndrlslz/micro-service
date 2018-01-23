@@ -15,7 +15,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'nebula.optional-base'
 
 jar {
-    baseName = 'bff'
+    baseName = 'config-server'
     version = '0.0.1-SNAPSHOT'
 }
 dependencyManagement {
@@ -29,9 +29,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-hateoas")
     compile('org.springframework.cloud:spring-cloud-starter-eureka')
-    compile('org.springframework.cloud:spring-cloud-starter-hystrix')
-    compile('org.springframework.cloud:spring-cloud-starter-ribbon')
-    compile('org.springframework.cloud:spring-cloud-starter-feign')
+    compile('org.springframework.cloud:spring-cloud-config-server')
     compile('io.springfox:springfox-swagger2:2.7.0')
     compile('io.springfox:springfox-swagger-ui:2.7.0')
     compile('org.springframework.boot:spring-boot-devtools', optional)
@@ -72,6 +70,5 @@ task integrationTest(type: Test) {
 }
 
 check.dependsOn integrationTest
-
 
 
