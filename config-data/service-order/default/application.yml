@@ -1,0 +1,21 @@
+server:
+  port: 8763
+
+spring:
+  application:
+    name: service-order
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/order?useSSL=false
+    username: root
+    password: passw0rd
+  jpa:
+    show-sql: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+logging:
+  file: /apps/boot/application.log

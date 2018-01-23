@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: order
+  cloud:
+    config:
+      enabled: true
+      fail-fast: true
+      uri: http://localhost:1201/
+
+---
+spring:
+  profiles: docker
+  cloud:
+    config:
+      enabled: true
+      fail-fast: true
+      uri: http://config-server-container:1201/
