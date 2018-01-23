@@ -5,7 +5,22 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/ndrlslz/micro-service.git
+          uri: https://github.com/ndrlslz/micro-service
           search-paths: '/config-data/{application}/{profile}'
+
 server:
   port: 1201
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+---
+spring:
+  profiles: docker
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server-container:8761/eureka
