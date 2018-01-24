@@ -16,3 +16,5 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka-server-container:8761/eureka
+
+custom_param: 666

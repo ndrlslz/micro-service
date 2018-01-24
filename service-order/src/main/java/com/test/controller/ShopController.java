@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -22,8 +24,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @Api(value = "Shop", description = "Access to shop resources")
 @RequestMapping(produces = APPLICATION_JSON_VALUE)
+@RefreshScope
 public class ShopController {
     private ShopService shopService;
+
+    @Value("${custom_param}")
+    private String customParam;
 
     @Autowired
     public ShopController(ShopService shopService) {
@@ -38,6 +44,7 @@ public class ShopController {
     })
     public Shops listAllShops(@PageableDefault Pageable pageable,
                               PagedResourcesAssembler<ShopEntity> assembler) {
+        System.out.println("Param: " + customParam);
         return shopService.retrieveAllShops(pageable, assembler);
     }
 }

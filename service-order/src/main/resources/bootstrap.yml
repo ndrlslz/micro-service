@@ -1,12 +1,15 @@
 spring:
   application:
-    name: order
+    name: service-order
   cloud:
     config:
       enabled: true
       fail-fast: true
       uri: http://localhost:1201/
 
+management:
+  security:
+    enabled: false
 ---
 spring:
   profiles: docker
