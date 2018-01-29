@@ -5,8 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/ndrlslz/micro-service
-#          uri: file:///Users/xuyao/IdeaProjects/microservice
+          uri: file:///Users/xuyao/IdeaProjects/microservice
           search-paths: '/config-data/{application}/{profile}'
 
 server:
@@ -22,7 +21,12 @@ eureka:
 ---
 spring:
   profiles: docker
-
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ndrlslz/micro-service
+          search-paths: '/config-data/{application}/{profile}'
 eureka:
   client:
     serviceUrl:

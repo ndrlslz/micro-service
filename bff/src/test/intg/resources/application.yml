@@ -7,3 +7,7 @@ service:
     url: "http://localhost"
     port: 8764
     timeout: 5000
+
+eureka:
+  client:
+    enabled: false
