@@ -19,4 +19,9 @@ public class Vehicles {
     public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
+
+    public Vehicles withVehicles(List<Vehicle> vehicles) {
+        setVehicles(vehicles);
+        return this;
+    }
 }

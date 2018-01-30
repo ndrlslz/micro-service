@@ -20,14 +20,12 @@ import static java.lang.String.format;
 @Repository
 public class VehicleDaoV1 implements VehicleDao{
     private final RestTemplate restTemplate;
-    private final RestEndpointProperties restEndpointProperties;
     private String baseUrl;
 
     @Autowired
     public VehicleDaoV1(RestTemplate restTemplate,
                         @Qualifier("serviceVehicleProperties") RestEndpointProperties restEndpointProperties) {
         this.restTemplate = restTemplate;
-        this.restEndpointProperties = restEndpointProperties;
         baseUrl = format("%s:%s", restEndpointProperties.getUrl(), restEndpointProperties.getPort());
     }
 

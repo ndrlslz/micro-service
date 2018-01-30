@@ -17,7 +17,7 @@ import java.util.List;
 import static com.test.exception.DaoExceptionBuilder.newException;
 
 @Repository
-public class OrderDaoV2 implements OrderDao{
+public class OrderDaoV2 implements OrderDao {
     private RestTemplate restTemplate;
     private final static String BASE_URL = "http://service-order";
 

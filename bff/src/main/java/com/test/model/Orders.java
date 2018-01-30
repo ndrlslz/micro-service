@@ -19,4 +19,9 @@ public class Orders {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    public Orders withOrders(List<Order> orders) {
+        setOrders(orders);
+        return this;
+    }
 }

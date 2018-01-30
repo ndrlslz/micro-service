@@ -7,27 +7,17 @@ import com.test.model.Orders;
 import com.test.model.Vehicle;
 import com.test.model.Vehicles;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static io.restassured.RestAssured.when;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@RunWith(SpringRunner.class)
-public class ShopControllerTest {
-    @LocalServerPort
-    private int port;
 
+public class ShopControllerTest extends ControllerTestBase {
     @MockBean
     private OrderDaoV1 orderDaoV1;
 
@@ -35,34 +25,28 @@ public class ShopControllerTest {
     private VehicleDaoV1 vehicleDaoV1;
 
     @Autowired
-    private ApplicationContext context;
+    private ApplicationContext applicationContext;
 
     @Test
     public void should_return_shop() throws Exception {
-        Orders orders = new Orders();
-        List<Order> orderList = new ArrayList<>();
-        Order order = new Order();
-        order.setShopName("shop_name");
-        order.setPrice("100");
-        order.setVehicleName("benz");
-        orderList.add(order);
-        orders.setOrders(orderList);
+        System.out.println(applicationContext.getBean("orderDaoV1").getClass().getCanonicalName());
+        Mockito.when(orderDaoV1.retrieveOrdersForShop("1")).thenReturn(
+                new Orders().withOrders(singletonList(
+                        new Order()
+                                .withPrice("100")
+                                .withShopName("shop_name")
+                                .withVehicleName("benz")))
+        );
 
-
-        Vehicles vehicles = new Vehicles();
-        List<Vehicle> vehicleList = new ArrayList<>();
-        Vehicle vehicle = new Vehicle();
-        vehicle.setName("marz");
-        vehicle.setPrice("200");
-        vehicleList.add(vehicle);
-        vehicles.setVehicles(vehicleList);
-
-
-        Mockito.when(orderDaoV1.retrieveOrdersForShop("1")).thenReturn(orders);
-        Mockito.when(vehicleDaoV1.retrieveVehiclesForShop("1")).thenReturn(vehicles);
+        Mockito.when(vehicleDaoV1.retrieveVehiclesForShop("1")).thenReturn(
+                new Vehicles().withVehicles(singletonList(
+                        new Vehicle()
+                                .withPrice("200")
+                                .withName("marz")))
+        );
 
         when()
-                .get("http://localhost:" + port + "/v1/shops/1")
+                .get(prefix + "v1/shops/1")
                 .then()
                 .statusCode(200)
                 .body("orders[0].price", equalTo("100"))

@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ShopServiceV2 implements ShopService {
-    //    private VehicleDao vehicleDaoV2;
-//    private OrderDao orderDaoV2;
     private OrderClient orderClient;
     private VehicleClient vehicleClient;
 

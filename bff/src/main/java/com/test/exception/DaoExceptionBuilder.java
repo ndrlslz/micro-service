@@ -31,6 +31,7 @@ public class DaoExceptionBuilder {
         }
         return new DaoException(exception, exception.getMessage());
     }
+
     private DaoException translateRestClientException(RestClientException exception) {
         if (exception instanceof ResourceAccessException) {
             return new CommunicationException(exception, exception.getMessage());

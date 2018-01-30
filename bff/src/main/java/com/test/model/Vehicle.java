@@ -19,4 +19,14 @@ public class Vehicle {
     public void setPrice(String price) {
         this.price = price;
     }
+
+    public Vehicle withName(String name) {
+        setName(name);
+        return this;
+    }
+
+    public Vehicle withPrice(String price) {
+        setPrice(price);
+        return this;
+    }
 }

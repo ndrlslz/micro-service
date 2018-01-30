@@ -36,4 +36,28 @@ public class Order {
     public void setShopName(String shopName) {
         this.shopName = shopName;
     }
+
+    public Order withVehicleName(String vehicleName) {
+        setVehicleName(vehicleName);
+        return this;
+    }
+
+    public Order withPrice(String price) {
+        setPrice(price);
+        return this;
+    }
+
+    public Order withShopName(String shopName) {
+        setShopName(shopName);
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "vehicleName='" + vehicleName + '\'' +
+                ", price='" + price + '\'' +
+                ", shopName='" + shopName + '\'' +
+                '}';
+    }
 }

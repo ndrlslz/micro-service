@@ -28,7 +28,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class ShopController {
     private ShopService shopService;
 
-    @Value("${custom_param:666}")
+    @Value("${custom_param:111}")
     private String customParam;
 
     @Autowired

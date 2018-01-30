@@ -18,16 +18,14 @@ import static com.test.exception.DaoExceptionBuilder.newException;
 import static java.lang.String.format;
 
 @Repository
-public class OrderDaoV1 implements OrderDao{
+public class OrderDaoV1 implements OrderDao {
     private RestTemplate restTemplate;
-    private RestEndpointProperties restEndpointProperties;
     private String baseUrl;
 
     @Autowired
     public OrderDaoV1(RestTemplate restTemplate,
                       @Qualifier("serviceOrderProperties") RestEndpointProperties restEndpointProperties) {
         this.restTemplate = restTemplate;
-        this.restEndpointProperties = restEndpointProperties;
         baseUrl = format("%s:%s", restEndpointProperties.getUrl(), restEndpointProperties.getPort());
     }
 

@@ -5,38 +5,46 @@ services:
         container_name: eureka-server-container
         ports:
             - "8761:8761"
+    config-server:
+        image: config-server
+        container_name: config-server-container
+        ports:
+            - "1201:1201"
+        depends_on:
+          - "eureka-server"
+        command: ["/apps/wait-for-it.sh", "eureka-server-container:8761", "--", "/bin/sh", "./run.sh" ]
     eureka-client:
         image: eureka-client
         container_name: eureka-client-container
-        depends_on:
-            - "eureka-server"
         ports:
             - "8762:8762"
-        command: ["/apps/wait-for-it.sh", "eureka-server:8761", "--", "/bin/sh", "./run.sh" ]
+        depends_on:
+            - "config-server"
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "--", "/bin/sh", "./run.sh" ]
     service-order:
         image: service-order
         container_name: service-order-container
-        depends_on:
-            - "eureka-server"
         ports:
             - "8763:8763"
-        command: ["/apps/wait-for-it.sh", "eureka-server:8761", "--", "/bin/sh", "./run.sh" ]
+        depends_on:
+            - "config-server"
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "--", "/bin/sh", "./run.sh" ]
     service-vehicle:
         image: service-vehicle
         container_name: service-vehicle-container
-        depends_on:
-            - "eureka-server"
         ports:
             - "8764:8764"
-        command: ["/apps/wait-for-it.sh", "eureka-server:8761", "--", "/bin/sh", "./run.sh" ]
+        depends_on:
+            - "config-server"
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "--", "/bin/sh", "./run.sh" ]
     bff:
         image: bff
         container_name: bff-container
-        depends_on:
-            - "eureka-server"
         ports:
             - "8765:8765"
-        command: ["/apps/wait-for-it.sh", "eureka-server:8761", "--", "/bin/sh", "./run.sh" ]
+        depends_on:
+            - "config-server"
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "--", "/bin/sh", "./run.sh" ]
 networks:
     default:
         external:

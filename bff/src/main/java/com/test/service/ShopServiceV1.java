@@ -1,9 +1,7 @@
 package com.test.service;
 
 import com.test.dao.OrderDao;
-import com.test.dao.OrderDaoV1;
 import com.test.dao.VehicleDao;
-import com.test.dao.VehicleDaoV1;
 import com.test.exception.DaoException;
 import com.test.exception.DaoRuntimeException;
 import com.test.model.Orders;
