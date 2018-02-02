@@ -1,9 +1,7 @@
 service:
   order:
-    url: "http://service-order-container"
-    port: 8763
+    url: "http://service-order-container:8763/service-order"
     timeout: 2000
   vehicle:
-    url: "http://service-vehicle-container"
-    port: 8764
+    url: "http://service-vehicle-container:8764/service-vehicle"
     timeout: 2000

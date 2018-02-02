@@ -26,7 +26,7 @@ public class VehicleDaoV1 implements VehicleDao{
     public VehicleDaoV1(RestTemplate restTemplate,
                         @Qualifier("serviceVehicleProperties") RestEndpointProperties restEndpointProperties) {
         this.restTemplate = restTemplate;
-        baseUrl = format("%s:%s", restEndpointProperties.getUrl(), restEndpointProperties.getPort());
+        baseUrl = restEndpointProperties.getUrl();
     }
 
     @HystrixCommand(commandKey = "retrieve vehicles for shop", fallbackMethod = "emptyVehicles")

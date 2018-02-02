@@ -26,7 +26,7 @@ public class OrderDaoV1 implements OrderDao {
     public OrderDaoV1(RestTemplate restTemplate,
                       @Qualifier("serviceOrderProperties") RestEndpointProperties restEndpointProperties) {
         this.restTemplate = restTemplate;
-        baseUrl = format("%s:%s", restEndpointProperties.getUrl(), restEndpointProperties.getPort());
+        baseUrl = restEndpointProperties.getUrl();
     }
 
     @HystrixCommand(commandKey = "retrieve orders for shop", fallbackMethod = "emptyOrders")

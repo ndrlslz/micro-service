@@ -19,8 +19,7 @@ public class OrderDaoV1Test {
         restTemplate = Mockito.mock(RestTemplate.class);
 
         RestEndpointProperties restEndpointProperties = new RestEndpointProperties();
-        restEndpointProperties.setUrl("http://localhost");
-        restEndpointProperties.setPort(80);
+        restEndpointProperties.setUrl("http://localhost:80/service-order");
 
         orderDao = new OrderDaoV1(restTemplate, restEndpointProperties);
     }
@@ -28,7 +27,7 @@ public class OrderDaoV1Test {
     @Test
     public void should_return_orders() throws Exception {
         Orders expected = new Orders();
-        when(restTemplate.getForObject("http://localhost:80/shops/1/orders", Orders.class)).thenReturn(expected);
+        when(restTemplate.getForObject("http://localhost:80/service-order/shops/1/orders", Orders.class)).thenReturn(expected);
 
         Orders orders = orderDao.retrieveOrdersForShop("1");
 

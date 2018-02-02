@@ -13,9 +13,6 @@ public class RestEndpointProperties {
     private String username;
     private String password;
 
-    @NotNull
-    private int port;
-
     @Min(MINIMAL_TIMEOUT)
     private int timeout;
 
@@ -41,14 +38,6 @@ public class RestEndpointProperties {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
     }
 
     public int getTimeout() {

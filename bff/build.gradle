@@ -38,6 +38,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-devtools', optional)
     testCompile 'io.rest-assured:rest-assured:3.0.6'
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile "com.github.tomakehurst:wiremock:2.14.0"
 }
 
 configurations {

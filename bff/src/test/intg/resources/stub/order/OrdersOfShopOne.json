@@ -1,0 +1,72 @@
+{
+  "data": [
+    {
+      "vehicle": "wire_mock_benz",
+      "price": 9999,
+      "shopName": "name1"
+    },
+    {
+      "vehicle": "new_car",
+      "price": 1000,
+      "shopName": "name1"
+    },
+    {
+      "vehicle": "this_is_car2",
+      "price": 123123,
+      "shopName": "name1"
+    },
+    {
+      "vehicle": "mar",
+      "price": 100,
+      "shopName": "name1"
+    },
+    {
+      "vehicle": "new_car",
+      "price": 1000,
+      "shopName": "name1"
+    },
+    {
+      "vehicle": "this_is_car2",
+      "price": 10111,
+      "shopName": "name1"
+    },
+    {
+      "vehicle": "new_car",
+      "price": 123123,
+      "shopName": "name1"
+    },
+    {
+      "vehicle": "this_is_car2",
+      "price": 123111,
+      "shopName": "name1"
+    },
+    {
+      "vehicle": "this_is_car2",
+      "price": 5555,
+      "shopName": "name1"
+    },
+    {
+      "vehicle": "this_is_car2",
+      "price": 123111111,
+      "shopName": "name1"
+    }
+  ],
+  "links": [
+    {
+      "rel": "first",
+      "href": "http://localhost:8763/shops/1/orders?page=0&size=10"
+    },
+    {
+      "rel": "self",
+      "href": "http://localhost:8763/shops/1/orders"
+    },
+    {
+      "rel": "next",
+      "href": "http://localhost:8763/shops/1/orders?page=1&size=10"
+    },
+    {
+      "rel": "last",
+      "href": "http://localhost:8763/shops/1/orders?page=2&size=10"
+    }
+  ]
+}

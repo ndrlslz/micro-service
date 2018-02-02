@@ -19,8 +19,7 @@ public class VehicleDaoV1Test {
         restTemplate = Mockito.mock(RestTemplate.class);
 
         RestEndpointProperties restEndpointProperties = new RestEndpointProperties();
-        restEndpointProperties.setUrl("http://localhost");
-        restEndpointProperties.setPort(80);
+        restEndpointProperties.setUrl("http://localhost:80/service-vehicle");
 
         vehicleDao = new VehicleDaoV1(restTemplate, restEndpointProperties);
     }
@@ -28,7 +27,7 @@ public class VehicleDaoV1Test {
     @Test
     public void should_return_vehicles() throws Exception {
         Vehicles expected = new Vehicles();
-        when(restTemplate.getForObject("http://localhost:80/vehicles?shopId=1", Vehicles.class)).thenReturn(expected);
+        when(restTemplate.getForObject("http://localhost:80/service-vehicle/vehicles?shopId=1", Vehicles.class)).thenReturn(expected);
 
         Vehicles vehicles = vehicleDao.retrieveVehiclesForShop("1");
 

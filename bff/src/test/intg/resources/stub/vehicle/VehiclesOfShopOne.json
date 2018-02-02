@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "name": "wire_mock_benz",
+      "price": 200
+    },
+    {
+      "name": "mar",
+      "price": 99
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "http://localhost:8764/vehicles"
+    }
+  ],
+  "meta": {
+    "size": 10,
+    "totalElements": 2,
+    "totalPages": 1,
+    "number": 0
+  }
+}

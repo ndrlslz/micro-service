@@ -10,6 +10,10 @@ spring:
 management:
   security:
     enabled: false
+
+eureka:
+  client:
+    enabled: false
 ---
 spring:
   profiles: docker
@@ -18,3 +22,7 @@ spring:
       enabled: true
       fail-fast: true
       uri: http://config-server-container:1201/
+
+eureka:
+  client:
+    enabled: true

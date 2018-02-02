@@ -1,11 +1,9 @@
 service:
   order:
-    url: "http://localhost"
-    port: 8763
+    url: "http://localhost:10000/service-order"
     timeout: 5000
   vehicle:
-    url: "http://localhost"
-    port: 8764
+    url: "http://localhost:10000/service-vehicle"
     timeout: 5000
 
 eureka:
