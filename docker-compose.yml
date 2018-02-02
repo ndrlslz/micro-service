@@ -12,7 +12,7 @@ services:
             - "1201:1201"
         depends_on:
           - "eureka-server"
-        command: ["/apps/wait-for-it.sh", "eureka-server-container:8761", "--", "/bin/sh", "./run.sh" ]
+        command: ["/apps/wait-for-it.sh", "eureka-server-container:8761","-t", "60", "--", "/bin/sh", "./run.sh" ]
     eureka-client:
         image: eureka-client
         container_name: eureka-client-container
@@ -20,7 +20,7 @@ services:
             - "8762:8762"
         depends_on:
             - "config-server"
-        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "--", "/bin/sh", "./run.sh" ]
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "-t", "60", "--", "/bin/sh", "./run.sh" ]
     service-order:
         image: service-order
         container_name: service-order-container
@@ -28,7 +28,7 @@ services:
             - "8763:8763"
         depends_on:
             - "config-server"
-        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "--", "/bin/sh", "./run.sh" ]
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "-t", "60", "--", "/bin/sh", "./run.sh" ]
     service-vehicle:
         image: service-vehicle
         container_name: service-vehicle-container
@@ -36,7 +36,7 @@ services:
             - "8764:8764"
         depends_on:
             - "config-server"
-        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "--", "/bin/sh", "./run.sh" ]
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "-t", "60", "--", "/bin/sh", "./run.sh" ]
     bff:
         image: bff
         container_name: bff-container
@@ -44,7 +44,7 @@ services:
             - "8765:8765"
         depends_on:
             - "config-server"
-        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "--", "/bin/sh", "./run.sh" ]
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "-t", "60", "--", "/bin/sh", "./run.sh" ]
 networks:
     default:
         external:

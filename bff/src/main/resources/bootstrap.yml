@@ -11,9 +11,6 @@ management:
   security:
     enabled: false
 
-eureka:
-  client:
-    enabled: false
 ---
 spring:
   profiles: docker
