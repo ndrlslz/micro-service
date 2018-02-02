@@ -6,6 +6,7 @@ import com.test.service.ShopServiceV1;
 import com.test.service.v2.ShopServiceV2;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +17,11 @@ import javax.validation.constraints.NotNull;
 import static javax.servlet.http.HttpServletResponse.SC_BAD_GATEWAY;
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @Api(value = "Bff", description = "Bff service")
-@RequestMapping("/v2")
+@RequestMapping(value = "/v2", produces = APPLICATION_JSON_VALUE)
 public class ShopControllerV2 {
     private ShopServiceV2 shopServiceV2;
 

@@ -4,11 +4,17 @@ import com.test.exception.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.servlet.http.HttpServletResponse;
+
 import static com.test.exception.ApiErrorsBuilder.newErrors;
+import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestControllerAdvice
 public class ControllerAdvice {
@@ -17,6 +23,7 @@ public class ControllerAdvice {
     @ExceptionHandler(DaoRuntimeException.class)
     public ResponseEntity<ApiErrors> handleRaoRuntimeException(DaoRuntimeException e) {
         DaoException daoException = e.getDaoException();
+        daoException.getCause().printStackTrace();
         if (daoException instanceof ServiceException) {
             return new ResponseEntity<>(
                     new ApiErrors(((ServiceException) daoException).getApiErrors()),
