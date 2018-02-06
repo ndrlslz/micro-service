@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 1101
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+api:
+  security:
+    paths: /**
+    roles: ADMIN
+    users:
+      username: password,ROLE_ADMIN,enabled
+
+---
+spring:
+  profiles: docker
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server-container:8761/eureka

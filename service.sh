@@ -1,5 +1,5 @@
 config_project="config-server"
-projects=( "eureka-server" "eureka-client" "service-order" "service-vehicle" "bff" )
+projects=( "eureka-server" "eureka-client" "service-order" "service-vehicle" "bff" "api-gateway")
 
 microservice_dir=$(dirname $0)
 command=$1

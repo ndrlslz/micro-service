@@ -1,6 +1,5 @@
 server:
   port: 8764
-  context-path: /service-vehicle
 
 spring:
   application:

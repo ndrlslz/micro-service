@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient("service-vehicle")
 public interface VehicleClient {
-    @GetMapping("service-vehicle/vehicles")
+    @GetMapping("vehicles")
     Vehicles retrieveVehiclesForShop(@RequestParam("shopId") String shopId);
 }

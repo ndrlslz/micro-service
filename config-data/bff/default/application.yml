@@ -1,7 +1,7 @@
 service:
   order:
-    url: "http://localhost:8763/service-order"
+    url: "http://localhost:8763"
     timeout: 5000
   vehicle:
-    url: "http://localhost:8764/service-vehicle"
+    url: "http://localhost:8764"
     timeout: 5000

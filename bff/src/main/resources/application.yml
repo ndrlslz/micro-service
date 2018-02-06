@@ -1,6 +1,5 @@
 server:
   port: 8765
-  context-path: /bff
 
 spring:
   application:

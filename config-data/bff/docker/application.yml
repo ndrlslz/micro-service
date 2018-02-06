@@ -1,7 +1,7 @@
 service:
   order:
-    url: "http://service-order-container:8763/service-order"
-    timeout: 2000
+    url: "http://service-order-container:8763"
+    timeout: 5000
   vehicle:
-    url: "http://service-vehicle-container:8764/service-vehicle"
-    timeout: 2000
+    url: "http://service-vehicle-container:8764"
+    timeout: 5000
