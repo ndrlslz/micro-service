@@ -1,0 +1,39 @@
+apply plugin: 'scala'
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+//sourceSets {
+//    simulations {
+//        scala {
+//            srcDirs = ['simulations/load']
+//        }
+//        resources {
+//            srcDirs = ['simulations/resources']
+//        }
+//    }
+//}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.8'
+    compile 'io.gatling.highcharts:gatling-charts-highcharts:2.2.5'
+    compile 'io.gatling:gatling-app:2.2.5'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.scalatest:scalatest_2.11:3.0.0'
+    testRuntime 'org.scala-lang.modules:scala-xml_2.11:1.0.5'
+}
+
+task run(type: JavaExec) {
+    description = 'Test load the Spring Boot web service with Gatling'
+    group = 'Load Test'
+    classpath = sourceSets.test.runtimeClasspath
+    main = 'io.gatling.app.Gatling'
+    args = [
+            '--simulation', 'com.test.vehicle.VehicleSimulation',
+            '--results-folder', "${buildDir}/gatling-results",
+            '--binaries-folder', sourceSets.test.output.classesDir.toString() // ignored because of above bug
+    ]
+}
+

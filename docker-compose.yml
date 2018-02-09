@@ -45,6 +45,14 @@ services:
         depends_on:
             - "config-server"
         command: ["/apps/wait-for-it.sh", "config-server-container:1201", "-t", "60", "--", "/bin/sh", "./run.sh" ]
+    api-gateway:
+        image: api-gateway
+        container_name: api-gateway-container
+        ports:
+            - "1101:1101"
+        depends_on:
+            - "config-server"
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "-t", "60", "--", "/bin/sh", "./run.sh" ]
 networks:
     default:
         external:
