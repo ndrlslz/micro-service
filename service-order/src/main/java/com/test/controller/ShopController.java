@@ -8,6 +8,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -26,6 +28,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(produces = APPLICATION_JSON_VALUE)
 @RefreshScope
 public class ShopController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShopController.class);
     private ShopService shopService;
 
     @Value("${custom_param:111}")
@@ -44,7 +47,7 @@ public class ShopController {
     })
     public Shops listAllShops(@PageableDefault Pageable pageable,
                               PagedResourcesAssembler<ShopEntity> assembler) {
-        System.out.println("Param: " + customParam);
+        LOGGER.info("Param: " + customParam);
         return shopService.retrieveAllShops(pageable, assembler);
     }
 }

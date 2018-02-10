@@ -5,3 +5,4 @@ out/
 *.iws
 */*.iml
 build/
+gatling/results

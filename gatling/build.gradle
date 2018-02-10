@@ -1,3 +1,5 @@
+import groovy.io.FileType
+
 apply plugin: 'scala'
 apply plugin: 'java'
 
@@ -5,35 +7,62 @@ repositories {
     jcenter()
 }
 
-//sourceSets {
-//    simulations {
-//        scala {
-//            srcDirs = ['simulations/load']
-//        }
-//        resources {
-//            srcDirs = ['simulations/resources']
-//        }
-//    }
-//}
+configurations {
+    gatling
+}
+
+sourceSets {
+    simulations {
+        scala {
+            srcDirs = ['simulations/load']
+        }
+        resources {
+            srcDirs = ['simulations/resources']
+        }
+        compileClasspath += configurations.gatling
+    }
+
+}
 
 dependencies {
     compile 'org.scala-lang:scala-library:2.11.8'
-    compile 'io.gatling.highcharts:gatling-charts-highcharts:2.2.5'
-    compile 'io.gatling:gatling-app:2.2.5'
+    gatling 'io.gatling.highcharts:gatling-charts-highcharts:2.2.5'
+    gatling 'io.gatling:gatling-app:2.2.5'
     testCompile 'junit:junit:4.12'
     testCompile 'org.scalatest:scalatest_2.11:3.0.0'
     testRuntime 'org.scala-lang.modules:scala-xml_2.11:1.0.5'
 }
 
-task run(type: JavaExec) {
-    description = 'Test load the Spring Boot web service with Gatling'
-    group = 'Load Test'
-    classpath = sourceSets.test.runtimeClasspath
-    main = 'io.gatling.app.Gatling'
-    args = [
-            '--simulation', 'com.test.vehicle.VehicleSimulation',
-            '--results-folder', "${buildDir}/gatling-results",
-            '--binaries-folder', sourceSets.test.output.classesDir.toString() // ignored because of above bug
-    ]
+task runSingle(dependsOn: 'compileSimulationsScala') {
+    doLast {
+        runGatling(sim)
+    }
 }
 
+
+task runPackage(dependsOn: 'compileSimulationsScala') {
+    doLast {
+        String prefix = "$projectDir/simulations/load/"
+        String rootFolder = sim.replace('.', '/')
+        file("simulations/load/$rootFolder").eachFileRecurse(FileType.FILES) { file ->
+            if (file.name.endsWith(".scala")) {
+                runGatling((file.path - prefix - ".scala").replace('/', '.'))
+            }
+        }
+
+    }
+}
+
+
+def runGatling(simulation) {
+    javaexec {
+        classpath = sourceSets.simulations.runtimeClasspath + configurations.gatling
+
+        main = "io.gatling.app.Gatling"
+        args = ['-s', "$simulation",
+                '-sf', 'simulations/resources',
+                '-df', 'simulations/resources'
+        ]
+
+    }
+}
