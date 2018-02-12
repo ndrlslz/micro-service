@@ -8,6 +8,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -24,6 +26,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Api(value = "Vehicle", description = "Access to vehicle resource")
 @RequestMapping(produces = APPLICATION_JSON_VALUE)
 public class VehicleController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(VehicleController.class);
     private final VehicleService vehicleService;
 
     @Autowired
@@ -36,6 +39,8 @@ public class VehicleController {
     public Vehicles retrieveAllVehicles(@PageableDefault Pageable pageable,
                                         PagedResourcesAssembler<VehicleEntity> pagedResourcesAssembler,
                                         @ApiParam @RequestParam(required = false) String shopId) {
+        LOGGER.info("retrieve vehicles for shop id " + shopId);
+
         return vehicleService.retrieveAllVehicles(shopId, pageable, pagedResourcesAssembler);
     }
 }

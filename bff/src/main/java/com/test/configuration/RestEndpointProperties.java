@@ -1,10 +1,12 @@
 package com.test.configuration;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+@Validated
 public class RestEndpointProperties {
     private static final int MINIMAL_TIMEOUT = 1000;
     @NotBlank

@@ -18,7 +18,7 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 logging:
-  file: /apps/boot/application.log
+  file: service-vehicle/logs/application.log
 
 ---
 spring:
@@ -32,3 +32,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka-server-container:8761/eureka
+
+logging:
+  file: /apps/boot/application.log

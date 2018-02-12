@@ -1,5 +1,9 @@
 server:
   port: 8765
+  tomcat:
+    accesslog:
+      enabled: true
+    basedir: bff/build
 
 spring:
   application:
@@ -11,7 +15,8 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 logging:
-  file: /apps/boot/application.log
+  file: bff/build/logs/application.log
+
 
 hystrix:
   threadpool:
@@ -41,3 +46,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka-server-container:8761/eureka
+
+logging:
+  file: /apps/boot/application.log
+  level: debug

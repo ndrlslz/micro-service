@@ -4,6 +4,8 @@ import com.test.exception.ApiErrors;
 import com.test.model.Shop;
 import com.test.service.ShopServiceV1;
 import io.swagger.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Api(value = "Bff", description = "Bff service")
 @RequestMapping(value = "/v1", produces = APPLICATION_JSON_VALUE)
 public class ShopController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShopController.class);
     private ShopServiceV1 shopServiceV1;
 
     @Autowired
@@ -35,6 +38,8 @@ public class ShopController {
             @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
     })
     public Shop retrieveShop(@ApiParam(value = "Shop Id") @NotNull @PathVariable("shop_id") String shopId) throws Exception {
+        LOGGER.info("retrieve v1 shop for id " + shopId);
+
         return shopServiceV1.retrieveShop(shopId);
     }
 }
