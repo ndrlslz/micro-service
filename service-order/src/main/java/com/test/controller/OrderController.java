@@ -9,6 +9,8 @@ import com.test.model.Order;
 import com.test.model.Orders;
 import com.test.service.DefaultOrderService;
 import io.swagger.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -29,6 +31,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(produces = APPLICATION_JSON_VALUE)
 @Validated
 public class OrderController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
     private final DefaultOrderService orderService;
 
     @Autowired
@@ -45,6 +48,8 @@ public class OrderController {
     public Orders retrieveOrders(@NotNull @PathVariable @ApiParam(value = "id", required = true) String id,
                                  @PageableDefault Pageable pageable,
                                  PagedResourcesAssembler<OrderEntity> assembler) throws InterruptedException {
+        LOGGER.info("retrieve orders for shop id " + id);
+
         return orderService.retrieveAllOrdersByShopId(id, pageable, assembler);
     }
 

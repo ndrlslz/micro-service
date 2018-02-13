@@ -8,6 +8,8 @@ server:
 spring:
   application:
     name: bff
+  zipkin:
+    base-url: http://localhost:9411
 
 eureka:
   client:
@@ -42,6 +44,9 @@ hystrix:
 ---
 spring:
   profiles: docker
+  zipkin:
+    base-url: http://zipkin-server-container:9411
+
 eureka:
   client:
     serviceUrl:

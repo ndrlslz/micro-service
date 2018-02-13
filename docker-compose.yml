@@ -53,6 +53,14 @@ services:
         depends_on:
             - "config-server"
         command: ["/apps/wait-for-it.sh", "config-server-container:1201", "-t", "60", "--", "/bin/sh", "./run.sh" ]
+    zipkin-server:
+        image: zipkin-server
+        container_name: zipkin-server-container
+        ports:
+            - "9411:9411"
+        depends_on:
+            - "config-server"
+        command: ["/apps/wait-for-it.sh", "config-server-container:1201", "-t", "60", "--", "/bin/sh", "./run.sh" ]
 networks:
     default:
         external:
