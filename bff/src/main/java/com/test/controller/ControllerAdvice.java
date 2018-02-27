@@ -22,8 +22,8 @@ public class ControllerAdvice {
 
     @ExceptionHandler(DaoRuntimeException.class)
     public ResponseEntity<ApiErrors> handleRaoRuntimeException(DaoRuntimeException e) {
+        e.getDaoException().printStackTrace();
         DaoException daoException = e.getDaoException();
-        daoException.getCause().printStackTrace();
         if (daoException instanceof ServiceException) {
             return new ResponseEntity<>(
                     new ApiErrors(((ServiceException) daoException).getApiErrors()),
