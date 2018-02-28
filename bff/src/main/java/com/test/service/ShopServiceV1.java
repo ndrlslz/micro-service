@@ -7,19 +7,18 @@ import com.test.exception.DaoRuntimeException;
 import com.test.model.Orders;
 import com.test.model.Shop;
 import com.test.model.Vehicles;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.sleuth.SpanNamer;
-import org.springframework.cloud.sleuth.TraceCallable;
 import org.springframework.cloud.sleuth.TraceKeys;
 import org.springframework.cloud.sleuth.Tracer;
-import org.springframework.cloud.sleuth.instrument.async.LazyTraceExecutor;
 import org.springframework.cloud.sleuth.instrument.async.TraceableExecutorService;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.*;
-import java.util.function.Supplier;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 @Service
 public class ShopServiceV1 implements ShopService {

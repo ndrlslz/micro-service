@@ -29,7 +29,6 @@ public class ShopControllerTest extends ControllerTestBase {
 
     @Test
     public void should_return_shop() throws Exception {
-        System.out.println(applicationContext.getBean("orderDaoV1").getClass().getCanonicalName());
         Mockito.when(orderDaoV1.retrieveOrdersForShop("1")).thenReturn(
                 new Orders().withOrders(singletonList(
                         new Order()
