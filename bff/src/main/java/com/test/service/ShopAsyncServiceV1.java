@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.*;
 
 import static com.test.utils.CommonUtils.throwExceptionIfExceptionExists;
+import static java.util.concurrent.CompletableFuture.allOf;
 import static java.util.concurrent.CompletableFuture.runAsync;
 
 @Service
@@ -45,7 +46,7 @@ public class ShopAsyncServiceV1 implements ShopService {
 
     @Override
     public Shop retrieveShop(String shopId) throws Exception {
-        CountDownLatch countDownLatch = new CountDownLatch(THREAD_COUNT);
+//        CountDownLatch countDownLatch = new CountDownLatch(THREAD_COUNT);
         Shop shop = new Shop();
         AsyncResult<Vehicles> vehiclesAsyncResult = new AsyncResult<>();
         AsyncResult<Orders> ordersAsyncResult = new AsyncResult<>();
@@ -53,10 +54,15 @@ public class ShopAsyncServiceV1 implements ShopService {
         TraceableExecutorService traceableExecutorService = new TraceableExecutorService(
                 Executors.newFixedThreadPool(THREAD_COUNT), tracer, traceKeys, spanNamer);
 
-        async(vehiclesAsyncResult, countDownLatch, () -> vehicleDaoV1.retrieveVehiclesForShop(shopId), traceableExecutorService);
-        async(ordersAsyncResult, countDownLatch, () -> orderDaoV1.retrieveOrdersForShop(shopId), traceableExecutorService);
+        allOf(
+                async(vehiclesAsyncResult, () -> vehicleDaoV1.retrieveVehiclesForShop(shopId), traceableExecutorService),
+                async(ordersAsyncResult, () -> orderDaoV1.retrieveOrdersForShop(shopId), traceableExecutorService))
+                .join();
 
-        countDownLatch.await();
+//        async(vehiclesAsyncResult, countDownLatch, () -> vehicleDaoV1.retrieveVehiclesForShop(shopId), traceableExecutorService);
+//        async(ordersAsyncResult, countDownLatch, () -> orderDaoV1.retrieveOrdersForShop(shopId), traceableExecutorService);
+//
+//        countDownLatch.await();
 
         throwExceptionIfExceptionExists(vehiclesAsyncResult.getException());
         throwExceptionIfExceptionExists(ordersAsyncResult.getException());
@@ -66,16 +72,25 @@ public class ShopAsyncServiceV1 implements ShopService {
         return shop;
     }
 
-    public static <E> void async(AsyncResult<E> asyncResult, CountDownLatch countDownLatch, Callable<E> callable, Executor executor) {
-        runAsync(() -> {
+    public static <E> CompletableFuture<Void> async(AsyncResult<E> asyncResult, Callable<E> callable, Executor executor) {
+        return runAsync(() -> {
             try {
                 asyncResult.setResult(callable.call());
             } catch (Exception e) {
                 asyncResult.setException(e);
-            } finally {
-                countDownLatch.countDown();
             }
         }, executor);
     }
+//    public static <E> void async(AsyncResult<E> asyncResult, CountDownLatch countDownLatch, Callable<E> callable, Executor executor) {
+//        runAsync(() -> {
+//            try {
+//                asyncResult.setResult(callable.call());
+//            } catch (Exception e) {
+//                asyncResult.setException(e);
+//            } finally {
+//                countDownLatch.countDown();
+//            }
+//        }, executor);
+//    }
 
 }
