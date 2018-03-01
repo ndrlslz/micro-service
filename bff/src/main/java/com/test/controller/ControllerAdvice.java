@@ -3,14 +3,18 @@ package com.test.controller;
 import com.test.exception.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.ResourceAccessException;
 
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.concurrent.CompletableFuture;
 
 import static com.test.exception.ApiErrorsBuilder.newErrors;
 import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
@@ -22,7 +26,6 @@ public class ControllerAdvice {
 
     @ExceptionHandler(DaoRuntimeException.class)
     public ResponseEntity<ApiErrors> handleRaoRuntimeException(DaoRuntimeException e) {
-        e.getDaoException().printStackTrace();
         DaoException daoException = e.getDaoException();
         if (daoException instanceof ServiceException) {
             return new ResponseEntity<>(
@@ -46,5 +49,10 @@ public class ControllerAdvice {
                         .addInternalError("Internal server error")
                         .build(),
                 HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(CommunicationException.class)
+    public void handleResourceAccess(CommunicationException e) {
+        e.printStackTrace();
     }
 }

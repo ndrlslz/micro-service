@@ -6,6 +6,14 @@ spring:
 
 server:
   port: 1101
+	tomcat:
+		max-threads: 128 # 最大worker线程
+		min-spare-threads: 64 # 最小worker线程
+	undertow:
+		io-threads: 8 # IO线程数，默认为CPU核心数，最小为2
+		worker-threads: 40 # 阻塞任务线程池，值设置取决于系统的负载，默认为io-threads * 8
+		buffer-size: 512 # 每块buffer的空间大小
+		direct-buffers: false # 是否分配的直接内存
 
 eureka:
   client:
@@ -19,7 +27,11 @@ api:
     roles: ADMIN
     users:
       username: password,ROLE_ADMIN,enabled
-
+zuul:
+  host:
+    max-total-connections: 500
+    max-per-route-connections: 50
+  ribbon-isolation-strategy: thread
 
 ---
 spring:

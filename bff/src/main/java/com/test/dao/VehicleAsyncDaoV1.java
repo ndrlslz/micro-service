@@ -32,7 +32,6 @@ public class VehicleAsyncDaoV1 implements VehicleDao {
     @Override
     @HystrixCommand(commandKey = "retrieve vehicles for shop", fallbackMethod = "emptyVehicles")
     public Vehicles retrieveVehiclesForShop(String shopId) throws DaoException {
-        AsyncResult<Vehicles> result = new AsyncResult<>();
         try {
             String url = UrlBuilder.newUrlBuilder(baseUrl).buildRetrieveVehiclesUrl(shopId);
             return restTemplate.getForObject(url, Vehicles.class);
