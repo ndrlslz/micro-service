@@ -7,7 +7,7 @@ import io.restassured.response.ValidatableResponse;
 import static io.restassured.RestAssured.given;
 
 public abstract class BaseStep {
-    private static final String BASE_URI = "http://localhost:8763";
+    public static final String BASE_URI = "http://localhost:8763";
     private static ThreadLocal<CucumberRequest> cucumberRequest = new ThreadLocal<>();
     private static ThreadLocal<ValidatableResponse> response = new ThreadLocal<>();
 

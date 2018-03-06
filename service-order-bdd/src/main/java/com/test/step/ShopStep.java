@@ -1,6 +1,7 @@
 package com.test.step;
 
 import com.test.common.CucumberRequest;
+import com.test.db.DBHelper;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -14,6 +15,10 @@ import static org.hamcrest.Matchers.is;
 public class ShopStep extends BaseStep {
     private final static String RETRIEVE_SHOPS_PATH = "/shops";
 
+    @Given("^I have a shop whose name is (.*) and code is (.*)")
+    public void createShop(String name, String code) {
+        DBHelper.createShop(name, code);
+    }
     @Given("^I create a request to retrieve shops")
     public void retrieveOrders() {
         newRequest(new CucumberRequest()

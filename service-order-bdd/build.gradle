@@ -25,6 +25,7 @@ dependencyManagement {
 }
 
 dependencies {
+    compile project(':service-order')
     compile('io.cucumber:cucumber-java:2.3.1')
     compile('io.cucumber:cucumber-junit:2.3.1')
     compile('junit:junit:4.12')
