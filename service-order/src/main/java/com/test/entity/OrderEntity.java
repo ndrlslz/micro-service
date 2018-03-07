@@ -2,6 +2,7 @@ package com.test.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -17,6 +18,9 @@ public class OrderEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shop_id")
     private ShopEntity shop;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
     public String getId() {
         return id;
@@ -48,5 +52,13 @@ public class OrderEntity {
 
     public void setShop(ShopEntity shop) {
         this.shop = shop;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createAt) {
+        this.createdAt = createAt;
     }
 }

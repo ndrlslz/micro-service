@@ -15,10 +15,16 @@ import static org.hamcrest.Matchers.is;
 public class ShopStep extends BaseStep {
     private final static String RETRIEVE_SHOPS_PATH = "/shops";
 
+    @Given("^I have a shop whose id is (\\d+) name is (.*) and code is (.*)")
+    public void createShop(String id, String name, String code) {
+        DBHelper.createShop(name, code, id);
+    }
+
     @Given("^I have a shop whose name is (.*) and code is (.*)")
     public void createShop(String name, String code) {
         DBHelper.createShop(name, code);
     }
+
     @Given("^I create a request to retrieve shops")
     public void retrieveOrders() {
         newRequest(new CucumberRequest()

@@ -9,9 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class Application {
-    public static ConfigurableApplicationContext configurableApplicationContext;
-
     public static void main(String[] args) {
-        configurableApplicationContext = SpringApplication.run(Application.class);
+        SpringApplication.run(Application.class);
     }
 }

@@ -1,6 +1,8 @@
 package com.test.step;
 
 import com.test.common.SpringRunner;
+import com.test.db.DBHelper;
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -17,6 +19,7 @@ public class CommonStep extends BaseStep {
     @Before
     public void before() {
         springRunner.runApplication();
+        DBHelper.cleanDB();
     }
 
     @When("I sent the request")

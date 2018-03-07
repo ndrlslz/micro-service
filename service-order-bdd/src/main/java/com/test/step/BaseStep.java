@@ -6,8 +6,7 @@ import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
 
-public abstract class BaseStep {
-    public static final String BASE_URI = "http://localhost:8763";
+abstract class BaseStep {
     private static ThreadLocal<CucumberRequest> cucumberRequest = new ThreadLocal<>();
     private static ThreadLocal<ValidatableResponse> response = new ThreadLocal<>();
 
@@ -15,7 +14,7 @@ public abstract class BaseStep {
         response.set(validatableResponse);
     }
 
-    private CucumberRequest getRequest() {
+    CucumberRequest getRequest() {
         return cucumberRequest.get();
     }
 
@@ -31,7 +30,6 @@ public abstract class BaseStep {
 
     void sendRequest() {
         Response response = given()
-                .baseUri(BASE_URI)
                 .pathParams(getRequest().getPathParams())
                 .queryParams(getRequest().getQueryParams())
                 .when()

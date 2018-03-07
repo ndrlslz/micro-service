@@ -20,7 +20,7 @@ public class CucumberRequest {
         return pathParams;
     }
 
-    private void addPathParam(String key, String value) {
+    public void addPathParam(String key, String value) {
         pathParams.put(key, value);
     }
 
