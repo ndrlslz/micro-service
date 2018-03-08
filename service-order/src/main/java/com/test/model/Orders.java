@@ -59,7 +59,7 @@ public class Orders {
     }
 
     public Orders withMetadata(PagedResources.PageMetadata pageMetadata) {
-        setMetadata(metadata);
+        setMetadata(pageMetadata);
         return this;
     }
 

@@ -59,7 +59,7 @@ public class Shops {
     }
 
     public Shops withMetadata(PagedResources.PageMetadata pageMetadata) {
-        setMetadata(metadata);
+        setMetadata(pageMetadata);
         return this;
     }
 
