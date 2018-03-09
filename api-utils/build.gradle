@@ -26,21 +26,9 @@ dependencyManagement {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-hateoas")
-    compile("org.springframework.cloud:spring-cloud-starter-config")
-    compile('org.springframework.cloud:spring-cloud-starter-eureka')
-    compile('org.springframework.cloud:spring-cloud-starter-sleuth')
-    compile('org.springframework.cloud:spring-cloud-starter-zipkin')
-    compile 'mysql:mysql-connector-java'
-    compile 'com.h2database:h2'
-    compile('io.springfox:springfox-swagger2:2.7.0')
-    compile('io.springfox:springfox-swagger-ui:2.7.0')
     compile('org.springframework.boot:spring-boot-devtools', optional)
     testCompile 'io.rest-assured:rest-assured:3.0.6'
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('com.h2database:h2')
 }
 
 
