@@ -37,5 +37,4 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka-server-container:8761/eureka
-    enabled: true
 

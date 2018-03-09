@@ -45,9 +45,9 @@ public class OrderController {
             @ApiResponse(code = SC_BAD_REQUEST, response = ApiErrors.class, message = "Invalid query parameter"),
             @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
     })
-    public Orders retrieveOrders(@NotNull @PathVariable @ApiParam(value = "id", required = true) String id,
+    public Orders retrieveOrders(@PathVariable @ApiParam(value = "id", required = true) String id,
                                  @PageableDefault Pageable pageable,
-                                 PagedResourcesAssembler<OrderEntity> assembler) throws InterruptedException {
+                                 PagedResourcesAssembler<OrderEntity> assembler) {
         LOGGER.info("retrieve orders for shop id " + id);
 
         return orderService.retrieveAllOrdersByShopId(id, pageable, assembler);
