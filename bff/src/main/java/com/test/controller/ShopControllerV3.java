@@ -1,6 +1,6 @@
 package com.test.controller;
 
-import com.test.exception.ApiErrors;
+import com.test.model.ApiErrors;
 import com.test.model.Shop;
 import com.test.service.ShopAsyncServiceV1;
 import io.swagger.annotations.*;

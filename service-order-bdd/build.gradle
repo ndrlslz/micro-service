@@ -34,3 +34,6 @@ dependencies {
     compile 'io.rest-assured:rest-assured:3.0.6'
 }
 
+bootRepackage {
+    enabled = false
+}

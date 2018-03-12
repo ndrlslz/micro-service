@@ -1,9 +1,8 @@
 package com.test.controller;
 
+import com.test.constraint.ValidShopId;
 import com.test.entity.OrderEntity;
-import com.test.exception.ApiErrors;
-import com.test.exception.MissingParameterException;
-import com.test.exception.ResourceNotFoundException;
+import com.test.model.ApiErrors;
 import com.test.model.CreateOrderRequest;
 import com.test.model.Order;
 import com.test.model.Orders;
@@ -18,9 +17,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import static com.test.validation.OrderValidation.validateCreateOrderRequest;
 import static javax.servlet.http.HttpServletResponse.*;
@@ -45,7 +42,7 @@ public class OrderController {
             @ApiResponse(code = SC_BAD_REQUEST, response = ApiErrors.class, message = "Invalid query parameter"),
             @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
     })
-    public Orders retrieveOrders(@PathVariable @ApiParam(value = "id", required = true) String id,
+    public Orders retrieveOrders(@PathVariable @ValidShopId @ApiParam(value = "id", required = true) String id,
                                  @PageableDefault Pageable pageable,
                                  PagedResourcesAssembler<OrderEntity> assembler) {
         LOGGER.info("retrieve orders for shop id " + id);
@@ -60,7 +57,7 @@ public class OrderController {
             @ApiResponse(code = SC_BAD_REQUEST, response = ApiErrors.class, message = "Invalid query parameter"),
             @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
     })
-    public Order createOrder(@NotNull @PathVariable(value = "id") @ApiParam(value = "shop_id", required = true) String shopId,
+    public Order createOrder(@ValidShopId @PathVariable(value = "id") @ApiParam(value = "shop_id", required = true) String shopId,
                              @Valid @RequestBody CreateOrderRequest request) {
         validateCreateOrderRequest(request);
 

@@ -1,24 +1,15 @@
 package com.test.controller;
 
 import com.test.exception.*;
+import com.test.model.ApiErrors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.ResourceAccessException;
 
-import javax.servlet.http.HttpServletResponse;
-
-import java.util.concurrent.CompletableFuture;
-
-import static com.test.exception.ApiErrorsBuilder.newErrors;
-import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static com.test.model.ApiErrorsBuilder.newErrors;
 
 @RestControllerAdvice
 public class ControllerAdvice {

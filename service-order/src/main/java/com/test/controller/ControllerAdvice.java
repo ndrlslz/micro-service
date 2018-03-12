@@ -1,10 +1,9 @@
 package com.test.controller;
 
-import com.test.exception.ApiErrors;
-import com.test.exception.ApiErrorsBuilder;
 import com.test.exception.MissingParameterException;
 import com.test.exception.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
+import com.test.model.ApiErrors;
+import com.test.model.ApiErrorsBuilder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
 
-import static com.test.exception.ApiErrorsBuilder.newErrors;
+import static com.test.model.ApiErrorsBuilder.newErrors;
 import static java.lang.String.format;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;

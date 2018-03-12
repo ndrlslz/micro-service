@@ -38,13 +38,13 @@ public class DefaultShopServiceTest {
     private DefaultShopService shopService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         initMocks(this);
         shopService = new DefaultShopService(shopRepository, shopAssembler, shopsTranslator);
     }
 
     @Test
-    public void should_return_shops() throws Exception {
+    public void should_return_shops() {
         Page<ShopEntity> shopEntityPage = new PageImpl<>(new ArrayList<>());
         PagedResources<Resource<Shop>> resources = shopPagedResources(
                 Arrays.asList(shopResource("code1", "name1"), shopResource("code2", "name2"))

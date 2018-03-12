@@ -1,4 +1,4 @@
-package com.test.exception;
+package com.test.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +31,11 @@ public class ApiErrorsBuilder {
 
     public ApiErrorsBuilder addInternalError(String... message) {
         addError(SC_INTERNAL_SERVER_ERROR, message);
+        return this;
+    }
+
+    public ApiErrorsBuilder addServiceUnavailable(String... message) {
+        addError(SC_SERVICE_UNAVAILABLE, message);
         return this;
     }
 

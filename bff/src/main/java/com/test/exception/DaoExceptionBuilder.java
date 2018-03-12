@@ -1,6 +1,7 @@
 package com.test.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.test.model.ApiErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.ResourceAccessException;

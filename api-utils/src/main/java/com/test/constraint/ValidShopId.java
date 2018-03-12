@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ValidShopIdValidator.class)
 public @interface ValidShopId {
-    String message() default "{com.test.ValidShopId.message}";
+    String message() default "{com.test.constraint.ValidShopId.message}";
 
     Class<?>[] groups() default {};
 

@@ -1,4 +1,4 @@
-package com.test.exception;
+package com.test.model;
 
 public class ApiError {
     private String message;

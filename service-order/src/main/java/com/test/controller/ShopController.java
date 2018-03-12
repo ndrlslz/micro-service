@@ -1,7 +1,7 @@
 package com.test.controller;
 
 import com.test.entity.ShopEntity;
-import com.test.exception.ApiErrors;
+import com.test.model.ApiErrors;
 import com.test.model.Shops;
 import com.test.service.ShopService;
 import io.swagger.annotations.Api;
@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static javax.servlet.http.HttpServletResponse.*;
+import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
+import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController

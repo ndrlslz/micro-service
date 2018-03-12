@@ -1,5 +1,7 @@
 package com.test.exception;
 
+import com.test.model.ApiError;
+
 import java.util.List;
 
 public class ServiceException extends DaoException {

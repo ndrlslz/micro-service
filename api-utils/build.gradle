@@ -32,6 +32,10 @@ dependencies {
 }
 
 
+bootRepackage {
+    enabled = false
+}
+
 configurations {
     integrationTestCompile.extendsFrom testCompile
     integrationTestRuntime.extendsFrom testRuntime

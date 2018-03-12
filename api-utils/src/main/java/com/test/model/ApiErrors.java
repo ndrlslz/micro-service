@@ -1,4 +1,4 @@
-package com.test.exception;
+package com.test.model;
 
 import java.util.List;
 
@@ -6,6 +6,10 @@ import static java.util.Arrays.asList;
 
 public class ApiErrors {
     private List<ApiError> errors;
+
+    public ApiErrors() {
+
+    }
 
     public ApiErrors(List<ApiError> errors) {
         this.errors = errors;
