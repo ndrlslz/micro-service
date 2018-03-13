@@ -26,11 +26,11 @@ dependencyManagement {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-aop')
     compile('org.springframework.boot:spring-boot-devtools', optional)
     testCompile 'io.rest-assured:rest-assured:3.0.6'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
-
 
 bootRepackage {
     enabled = false

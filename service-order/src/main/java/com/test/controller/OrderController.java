@@ -2,6 +2,7 @@ package com.test.controller;
 
 import com.test.constraint.ValidShopId;
 import com.test.entity.OrderEntity;
+import com.test.log.PerformanceLog;
 import com.test.model.ApiErrors;
 import com.test.model.CreateOrderRequest;
 import com.test.model.Order;
@@ -42,6 +43,7 @@ public class OrderController {
             @ApiResponse(code = SC_BAD_REQUEST, response = ApiErrors.class, message = "Invalid query parameter"),
             @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
     })
+    @PerformanceLog
     public Orders retrieveOrders(@PathVariable @ValidShopId @ApiParam(value = "id", required = true) String id,
                                  @PageableDefault Pageable pageable,
                                  PagedResourcesAssembler<OrderEntity> assembler) {
@@ -57,6 +59,7 @@ public class OrderController {
             @ApiResponse(code = SC_BAD_REQUEST, response = ApiErrors.class, message = "Invalid query parameter"),
             @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
     })
+    @PerformanceLog
     public Order createOrder(@ValidShopId @PathVariable(value = "id") @ApiParam(value = "shop_id", required = true) String shopId,
                              @Valid @RequestBody CreateOrderRequest request) {
         validateCreateOrderRequest(request);
