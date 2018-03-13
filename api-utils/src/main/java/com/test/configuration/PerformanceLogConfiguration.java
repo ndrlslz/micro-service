@@ -1,6 +1,7 @@
-package com.test.aspect;
+package com.test.configuration;
 
 import com.test.log.PerformanceLog;
+import com.test.log.PerformanceLogAppenderConfiguration;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -9,14 +10,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.util.StopWatch;
 
 import static java.lang.String.format;
 
 @Aspect
 @Configuration
-public class PerformanceLogAspect {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PerformanceLog.class);
+@Import(PerformanceLogAppenderConfiguration.class)
+public class PerformanceLogConfiguration {
+    public static final Logger LOGGER = LoggerFactory.getLogger(PerformanceLog.class);
 
     @Value("${spring.application.name}")
     private String applicationName;
