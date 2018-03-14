@@ -1,5 +1,6 @@
 package com.test.controller;
 
+import com.test.log.PerformanceLog;
 import com.test.model.ApiErrors;
 import com.test.model.Shop;
 import com.test.service.v2.ShopServiceV2;
@@ -36,7 +37,8 @@ public class ShopControllerV2 {
             @ApiResponse(code = SC_BAD_GATEWAY, response = ApiErrors.class, message = "Error return from order or vehicles service"),
             @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, response = ApiErrors.class, message = "Internal server error")
     })
-    public Shop retrieveShop(@ApiParam(value = "Shop Id") @NotNull @PathVariable("shop_id") String shopId) throws Exception {
+    @PerformanceLog
+    public Shop retrieveShop(@ApiParam(value = "Shop Id") @NotNull @PathVariable("shop_id") String shopId) {
         LOGGER.info("retrieve v2 shop for shop id" + shopId);
 
         return shopServiceV2.retrieveShop(shopId);

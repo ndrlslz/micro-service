@@ -17,7 +17,9 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 logging:
-  file: bff/build/logs/application.log
+  path: bff/build/logs
+  message:
+    enabled: true
 
 
 hystrix:
@@ -53,5 +55,5 @@ eureka:
       defaultZone: http://eureka-server-container:8761/eureka
 
 logging:
-  file: /apps/boot/application.log
+  path: /apps/boot
   level: debug

@@ -20,7 +20,9 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 logging:
-  file: service-vehicle/build/logs/application.log
+  path: service-vehicle/build/logs
+  message:
+    enabled: true
 
 ---
 spring:
@@ -39,4 +41,4 @@ eureka:
       defaultZone: http://eureka-server-container:8761/eureka
 
 logging:
-  file: /apps/boot/application.log
+  path: /apps/boot

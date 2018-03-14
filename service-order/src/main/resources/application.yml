@@ -21,6 +21,8 @@ eureka:
 
 logging:
   path: service-order/build/logs
+  message:
+    enabled: true
 
 ---
 spring:
@@ -37,4 +39,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka-server-container:8761/eureka
+
+logging:
+  path: /apps/boot
 

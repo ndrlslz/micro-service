@@ -4,6 +4,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(value = "com.test")
+@ComponentScan
 public class TestApplication {
 }

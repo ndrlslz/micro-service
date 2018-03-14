@@ -19,7 +19,7 @@ public class LogbackConfigurator {
 
     private LoggerContext context;
 
-    LogbackConfigurator(LoggerContext context) {
+    public LogbackConfigurator(LoggerContext context) {
         Assert.notNull(context, "Context must not be null");
         this.context = context;
     }

@@ -2,6 +2,7 @@ package com.test.controller;
 
 import com.test.constraint.ValidShopId;
 import com.test.entity.VehicleEntity;
+import com.test.log.PerformanceLog;
 import com.test.model.Vehicles;
 import com.test.service.VehicleService;
 import io.swagger.annotations.Api;
@@ -38,6 +39,7 @@ public class VehicleController {
 
     @GetMapping("/vehicles")
     @ApiOperation(value = "Retrieve vehicles", response = Vehicles.class)
+    @PerformanceLog
     public Vehicles retrieveAllVehicles(@PageableDefault Pageable pageable,
                                         PagedResourcesAssembler<VehicleEntity> pagedResourcesAssembler,
                                         @Valid @ValidShopId @ApiParam @RequestParam(required = false) String shopId) {

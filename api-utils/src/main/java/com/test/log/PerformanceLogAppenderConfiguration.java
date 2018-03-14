@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class PerformanceLogAppenderConfiguration {
     private static final String PERFORMANCE_APPENDER = "PERFORMANCE_APPENDER";
-    private static final String PATTERN = "%date %msg%n";
+    private static final String PATTERN = "%date %X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] %msg%n";
 
     private final Environment environment;
 
