@@ -3,3 +3,9 @@ eureka:
     enabled: false
 
 custom_param: 666
+logging:
+  path: build/logs
+spring:
+  application:
+    name: service-order
+

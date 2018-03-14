@@ -9,3 +9,9 @@ service:
 eureka:
   client:
     enabled: false
+logging:
+  path: build/logs
+spring:
+  application:
+    name: service-vehicle
+

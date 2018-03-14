@@ -34,7 +34,7 @@ build_image() {
 
     rm_image
 
-    export JAR_FILE=$(cd build/libs && ls *.jar)
+    export JAR_FILE=$(cd build/libs && ls *-exec.jar)
     docker build -q -t ${image_name} -f docker/Dockerfile --build-arg jar=$JAR_FILE .
 }
 
