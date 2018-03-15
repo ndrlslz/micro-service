@@ -17,5 +17,5 @@ After starting the project, below are the urls of service.
 | service-vehicle     |  http://localhost:8764/swagger-ui.html |
 | bff     | http://localhost:8765/swagger-ui.html |
 | api-gateway     | prefix is http://localhost:1101. for instance, access bff via http://localhost:1101/bff/v1/shops/1 |
-| config-server   | prefix is http://localhost:1201/bff/docker. for instance, access bff config via http://localhost:1201/bff/docker |
+| config-server   | prefix is http://localhost:1201. for instance, access bff config via http://localhost:1201/bff/docker |
 | zipkin-server     | http://localhost:9411 |
